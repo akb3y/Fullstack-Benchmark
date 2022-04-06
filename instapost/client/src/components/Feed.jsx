@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import Post from './Post.jsx';
+import moment from 'moment';
 
 class Feed extends React.Component {
   constructor() {
@@ -20,12 +21,35 @@ class Feed extends React.Component {
   }
   render() {
     return (
-      <div className='feed'>
-        {/* section for post form */}
+      this.state.data.reverse().map((item) =>
+        <div className='post'>
+          <div className='post__byline'>
+            <div className='center'>
+              <img
+                className='avatar'
+                src='https://www.w3schools.com/w3images/avatar6.png'
+                alt='user avatar'
+              />
+              <span className='post__byline__user'>{item.username}</span>
+            </div>
+            {moment(item.createdAt).fromNow()}
+          </div>
+          <div className='post__image'>
+            <img src={item.imageUrl}/>
+          </div>
+          <p>
+            {item.body};
+          </p>
 
-        {/* section for all posts */}
-        <Post />
-      </div>
+          <div className='post__actions'>
+            <div className='post__likes'>Likes: {item.likes}</div>
+            <div className='post__buttons'>
+              <button>Like</button>
+              <button>Comment</button>
+            </div>
+          </div>
+        </div>
+      )
     );
   }
 }
