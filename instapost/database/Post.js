@@ -26,4 +26,14 @@ const fetchAll = (callback) => {
     });
 };
 
-module.exports = {Post, fetchAll};
+const updateLike = (data, callback) => {
+  Post.updateOne({})
+    .then(response => {
+      callback(null, response);
+    })
+    .catch(error => {
+      callback(error, null);
+    });
+};
+
+module.exports = {Post, fetchAll, updateLike};

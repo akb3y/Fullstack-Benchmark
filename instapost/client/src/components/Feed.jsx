@@ -10,6 +10,7 @@ class Feed extends React.Component {
       data: [],
       toggle: false
     };
+    this.updateLikes = this.updateLikes.bind(this);
   }
 
   componentDidMount() {
@@ -22,6 +23,18 @@ class Feed extends React.Component {
       });
   }
 
+  updateLikes(e) {
+    console.log(e.target.id);
+    axios.patch(`/api/posts/${e.target.id}`, {
+      likes: likes+1
+    })
+      .then(item => {
+        this.setState({individual: item.data});
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
 
   render() {
     return (
@@ -62,7 +75,7 @@ class Feed extends React.Component {
           <div className='post__actions'>
             <div className='post__likes'>Likes: {item.likes}</div>
             <div className='post__buttons'>
-              <button>Like</button>
+              <button id={item._id} onClick={this.updateLikes}>Like</button>
               <button>Comment</button>
             </div>
           </div>

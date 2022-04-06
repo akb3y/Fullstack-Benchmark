@@ -9,16 +9,26 @@ app.use(express.static(__dirname + '/../client/dist'));
 
 
 app.get('/api/posts', function(req, res) {
-  console.log("Hello World")
+  console.log('Hello World');
   modules.fetchAll((err, data) =>{
-    if(err) {
+    if (err) {
       res.status(400).send('Cannot update: ', err);
     } else {
       res.send(data);
     }
-  })
+  });
 });
 
+app.patch('/api/posts', function(req, res) {
+  console.log('Hello World');
+  modules.updateLike((err, data) =>{
+    if (err) {
+      res.status(400).send('Cannot update: ', err);
+    } else {
+      res.send(data);
+    }
+  });
+});
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
 });
