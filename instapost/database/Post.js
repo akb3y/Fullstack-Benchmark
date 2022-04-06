@@ -16,4 +16,14 @@ const postSchema = new mongoose.Schema(
 
 const Post = mongoose.model("Post", postSchema);
 
-module.exports = Post;
+const fetchAll = (callback) => {
+  Post.find({})
+    .then(response => {
+      callback(null, response);
+    })
+    .catch(error => {
+      callback(error, null);
+    });
+};
+
+module.exports = {Post, fetchAll};
