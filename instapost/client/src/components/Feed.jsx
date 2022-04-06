@@ -7,9 +7,11 @@ class Feed extends React.Component {
   constructor() {
     super();
     this.state = {
-      data: []
+      data: [],
+      toggle: false
     };
   }
+
   componentDidMount() {
     axios.get('/api/posts')
       .then(result => {
@@ -19,6 +21,8 @@ class Feed extends React.Component {
         console.log(error);
       });
   }
+
+
   render() {
     return (
       this.state.data.reverse().map((item) =>
@@ -37,9 +41,23 @@ class Feed extends React.Component {
           <div className='post__image'>
             <img src={item.imageUrl}/>
           </div>
-          <p>
-            {item.body};
-          </p>
+
+          {(item.body.length > 144 && this.state.toggle === false)  ? (
+            <p>{item.body.slice(0, 144)} <button onClick={() => this.setState({toggle: true})}>See more</button></p>
+          ) : (
+            <p>
+              {item.body.split('.').slice(0, 4).join(' ')};
+              <br />
+              <br />
+              {item.body.split('.').slice(4, 8).join(' ')};
+              <br />
+              <br />
+              {item.body.split('.').slice(8, 16).join(' ')};
+              <br />
+              <br />
+              {item.body.split('.').slice(16).join(' ')};
+            </p>
+          )}
 
           <div className='post__actions'>
             <div className='post__likes'>Likes: {item.likes}</div>
