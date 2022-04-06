@@ -40,13 +40,13 @@ HOW TO START THIS APP
 
 **Complete these setup tasks**
 
-- [ ] In your terminal, navigate to this assessment's `instapost` directory.
-- [ ] Run `npm install` inside the `instapost` directory to install dependencies.
-- [ ] Ensure that the MongoDB process is running on your computer (`mongod`).
-- [ ] Create the database by running `npm run db:setup`
-- [ ] In `server/index.js`, uncomment the lines of code corresponding to your choice of client-side framework.
-- [ ] Start your application with two commands, `npm run dev:react` and `npm start`, in two separate terminal tabs. Our `dev:react` script makes use of Webpack. For more information about Webpack, take a look at [the Webpack Docs](https://webpack.js.org/concepts/).
-- [ ] Study the given codebase before beginning the steps below. Consider what's been provided to you, what you'll need to refactor, and what you'll need to create as you work through the steps below.
+- [x] In your terminal, navigate to this assessment's `instapost` directory.
+- [x] Run `npm install` inside the `instapost` directory to install dependencies.
+- [x] Ensure that the MongoDB process is running on your computer (`mongod`).
+- [x] Create the database by running `npm run db:setup`
+- [x] In `server/index.js`, uncomment the lines of code corresponding to your choice of client-side framework.
+- [x] Start your application with two commands, `npm run dev:react` and `npm start`, in two separate terminal tabs. Our `dev:react` script makes use of Webpack. For more information about Webpack, take a look at [the Webpack Docs](https://webpack.js.org/concepts/).
+- [x] Study the given codebase before beginning the steps below. Consider what's been provided to you, what you'll need to refactor, and what you'll need to create as you work through the steps below.
 
 **WHEN THESE TASKS ARE COMPLETE:** proceed to Step One.
 
