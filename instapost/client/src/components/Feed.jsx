@@ -11,9 +11,14 @@ class Feed extends React.Component {
       toggle: false
     };
     this.updateLikes = this.updateLikes.bind(this);
+    this.getBlogs = this.getBlogs.bind(this);
   }
 
   componentDidMount() {
+    this.getBlogs();
+  }
+
+  getBlogs() {
     axios.get('/api/posts')
       .then(result => {
         this.setState({data: result.data});
@@ -24,12 +29,15 @@ class Feed extends React.Component {
   }
 
   updateLikes(e) {
-    console.log(e.target.id);
+    e.preventDefault();
+
     axios.patch(`/api/posts/${e.target.id}`, {
-      likes: likes+1
+      // likes: e.target.likes
+      likes: Number(e.target.value)
     })
-      .then(item => {
-        this.setState({individual: item.data});
+      .then((data) => {
+        console.log('FE : ', data.data);
+        this.getBlogs();
       })
       .catch(error => {
         console.log(error);
@@ -55,7 +63,7 @@ class Feed extends React.Component {
             <img src={item.imageUrl}/>
           </div>
 
-          {(item.body.length > 144 && this.state.toggle === false)  ? (
+          {(item.body.length > 144 && this.state.toggle === false) ? (
             <p>{item.body.slice(0, 144)} <button onClick={() => this.setState({toggle: true})}>See more</button></p>
           ) : (
             <p>
@@ -75,7 +83,7 @@ class Feed extends React.Component {
           <div className='post__actions'>
             <div className='post__likes'>Likes: {item.likes}</div>
             <div className='post__buttons'>
-              <button id={item._id} onClick={this.updateLikes}>Like</button>
+              <button id={item._id} onClick={this.updateLikes} value={item.likes}>Like</button>
               <button>Comment</button>
             </div>
           </div>

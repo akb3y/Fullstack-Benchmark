@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const db = require("./index.js");
+const mongoose = require('mongoose');
+const db = require('./index.js');
 mongoose.Promise = global.Promise;
 
 const postSchema = new mongoose.Schema(
@@ -14,7 +14,7 @@ const postSchema = new mongoose.Schema(
   }
 );
 
-const Post = mongoose.model("Post", postSchema);
+const Post = mongoose.model('Post', postSchema);
 
 const fetchAll = (callback) => {
   Post.find({})
@@ -27,13 +27,17 @@ const fetchAll = (callback) => {
 };
 
 const updateLike = (data, callback) => {
-  Post.updateOne({})
+  const newLikes = data.likes + 1;
+
+  Post.updateOne({_id: data.id}, {likes: newLikes})
     .then(response => {
       callback(null, response);
     })
     .catch(error => {
+      console.log('updateOne error: ', error);
       callback(error, null);
     });
 };
+
 
 module.exports = {Post, fetchAll, updateLike};

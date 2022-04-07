@@ -96,10 +96,10 @@ HOW TO START THIS APP
 
 **Implement these user stories by doing the following:**
 
-- [ ] In your Express server, create a request handler that will respond to a `PATCH` request to the route `/api/posts/:postId`. Your request handler should find the post in the database with the corresponding `_id`, then increment that post's `like` counter.
+- [x] In your Express server, create a request handler that will respond to a `PATCH` request to the route `/api/posts/:postId`. Your request handler should find the post in the database with the corresponding `_id`, then increment that post's `like` counter.
   - Use Express' `route parameters` to get the `postId` out of your request URL.
-- [ ] Refactor your `Post` component to include a _click_ event listener on the like button.
-- [ ] Within the event handler you created send a `PATCH` request to the route `/api/posts/:postId`.
+- [x] Refactor your `Post` component to include a _click_ event listener on the like button.
+- [x] Within the event handler you created send a `PATCH` request to the route `/api/posts/:postId`.
   - on success of the request, increment the post's count for immediate feedback to the user.
 
 **WHEN THIS STEP IS COMPLETE:** please make a commit with the message "complete step three"
@@ -114,7 +114,7 @@ HOW TO START THIS APP
 
 **Implement this user story by doing the following:**
 
-- [ ] In your Express server, create a request handler that will respond to a `POST` request to the route `/api/posts/`. Your request handler should take the data sent in the body of the request, and use that data to create and save a new post to your database.
+- [x] In your Express server, create a request handler that will respond to a `POST` request to the route `/api/posts/`. Your request handler should take the data sent in the body of the request, and use that data to create and save a new post to your database.
 - [ ] Build a new `Create` component, which will display a form with several inputs: one input each for the _username, and imageUrl_ of the post, a `textarea` for the _body_ of the post, and a `button` that will submit the post.
   - To aid you in crafting the structure, styling, and layout of the HTML elements in this component, we've provided an HTML "skeleton" for this component. You can find it at `mockups/Create.html`.
 - [ ] In the `Feed` component for your client, refactor so the `Create` component is displayed above all the posts.
