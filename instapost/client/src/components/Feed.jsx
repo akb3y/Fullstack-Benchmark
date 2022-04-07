@@ -4,40 +4,23 @@ import Post from './Post.jsx';
 import moment from 'moment';
 
 class Feed extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      data: [],
       toggle: false
     };
     this.updateLikes = this.updateLikes.bind(this);
-    this.getBlogs = this.getBlogs.bind(this);
-  }
-
-  componentDidMount() {
-    this.getBlogs();
-  }
-
-  getBlogs() {
-    axios.get('/api/posts')
-      .then(result => {
-        this.setState({data: result.data});
-      })
-      .catch(error => {
-        console.log(error);
-      });
   }
 
   updateLikes(e) {
     e.preventDefault();
 
     axios.patch(`/api/posts/${e.target.id}`, {
-      // likes: e.target.likes
       likes: Number(e.target.value)
     })
       .then((data) => {
         console.log('FE : ', data.data);
-        this.getBlogs();
+        this.props.getAllBlogs();
       })
       .catch(error => {
         console.log(error);
@@ -46,7 +29,7 @@ class Feed extends React.Component {
 
   render() {
     return (
-      this.state.data.reverse().map((item) =>
+      this.props.data.reverse().map((item) =>
         <div className='post'>
           <div className='post__byline'>
             <div className='center'>

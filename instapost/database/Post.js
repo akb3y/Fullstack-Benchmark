@@ -39,5 +39,20 @@ const updateLike = (data, callback) => {
     });
 };
 
+const addBlog = (data, callback) => {
+  var information = new Post({
+    username: data.username,
+    imageUrl: data.url,
+    body: data.body,
+  });
+  information.save((err, res) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(null, res);
+    }
+  });
+};
 
-module.exports = {Post, fetchAll, updateLike};
+
+module.exports = {Post, fetchAll, updateLike, addBlog};

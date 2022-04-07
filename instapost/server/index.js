@@ -19,7 +19,6 @@ app.get('/api/posts', function(req, res) {
 });
 
 app.patch('/api/posts/:postId', (req, res) => {
-  console.warn('Patch data: ', req.params.postId);
   var info = {id: req.params.postId, likes: req.body.likes};
 
   modules.updateLike(info, (err, data) =>{
@@ -28,6 +27,23 @@ app.patch('/api/posts/:postId', (req, res) => {
     } else {
       console.log('PATCH RESPONSE: ', data);
       res.send(data);
+    }
+  });
+});
+
+app.post('/api/posts', (req, res) =>{
+  var data = {
+    username: req.body.username,
+    url: req.body.imageUrl,
+    body: req.body.body
+  };
+  modules.addBlog(data, (err, result) => {
+    if (err) {
+      console.error('Something went wrong');
+      res.send(404);
+    } else {
+      console.log(result);
+      res.json(result);
     }
   });
 });
