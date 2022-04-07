@@ -30,7 +30,13 @@ You will create a full-stack application that implements several features for a 
 
 HOW TO START THIS APP
 
-- _[Modify this section to tell graders how to start your app]_
+make sure mongodb is running
+run npm run db:set
+create 2 terminals
+  -run npm run dev:react
+  -run npm start
+open a browser
+  -go to localhost:3000
 
 **Commit frequently** with informative messages. While there are instructions to commit at the end of each step, these should not be your only commits.
 
