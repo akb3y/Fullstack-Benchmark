@@ -29,7 +29,7 @@ const fetchAll = (callback) => {
 const updateLike = (data, callback) => {
   const newLikes = data.likes + 1;
 
-  Post.updateOne({_id: data.id}, {likes: newLikes})
+  Post.updateOne({_id: data.id}, {likes: newLikes}, {runValidators: true})
     .then(response => {
       callback(null, response);
     })

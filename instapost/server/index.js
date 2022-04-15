@@ -11,7 +11,7 @@ app.use(express.static(__dirname + '/../client/dist'));
 app.get('/api/posts', function(req, res) {
   modules.fetchAll((err, data) =>{
     if (err) {
-      res.status(400).send('Cannot update: ', err);
+      res.status(400).send(err);
     } else {
       res.send(data);
     }
@@ -25,7 +25,6 @@ app.patch('/api/posts/:postId', (req, res) => {
     if (err) {
       res.status(400).send('Cannot update: ', err);
     } else {
-      console.log('PATCH RESPONSE: ', data);
       res.send(data);
     }
   });
@@ -39,10 +38,8 @@ app.post('/api/posts', (req, res) =>{
   };
   modules.addBlog(data, (err, result) => {
     if (err) {
-      console.error('Something went wrong');
-      res.send(404);
+      res.status(400).send(err);
     } else {
-      console.log(result);
       res.json(result);
     }
   });
